@@ -1,0 +1,7 @@
+parameters:
+  managed_manifests:
+    01-mynamespace.yaml:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: example

@@ -1,0 +1,39 @@
+= Parameters
+
+The parent key for all of the following parameters is `managed_manifests`.
+
+== `namespace`
+
+[horizontal]
+type:: string
+default:: `syn-managed-manifests`
+
+The namespace in which to deploy this component.
+
+
+== Example
+
+[source,yaml]
+----
+namespace: example-namespace
+----
+
+== `managed_manifests.<filename>`
+
+[horizontal]
+type:: object
+default:: `{}` (no manifests)
+
+Each key under `managed_manifests` (except `namespace` and metadata keys like `=_metadata`) is rendered as a YAML file with the same name.
+
+== Example
+
+[source,yaml]
+----
+managed_manifests:
+  01-mynamespace.yaml:
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: example
+----

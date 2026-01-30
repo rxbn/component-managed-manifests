@@ -1,0 +1,6 @@
+name: managed-manifests
+title: managed-manifests
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/partials/nav.adoc
