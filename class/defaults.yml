@@ -4,3 +4,4 @@ parameters:
     =_metadata:
       multi_tenant: true
     namespace: syn-managed-manifests
+    manifests: {}

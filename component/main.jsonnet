@@ -2,15 +2,16 @@
 local kap = import 'lib/kapitan.libjsonnet';
 local inv = kap.inventory();
 // The hiera parameters for the component
-local params = inv.parameters.managed_manifests;
+local params = std.get(inv.parameters, 'managed_manifests', {});
+local manifests = std.get(params, 'manifests', {});
 
 local keys =
-  if params == null then
+  if manifests == null then
     []
   else
     std.filter(
-      function(k) k != 'namespace' && !std.startsWith(k, '='),
-      std.objectFields(params)
+      function(k) !std.startsWith(k, '='),
+      std.objectFields(manifests)
     );
 
 local normalize(k) =
@@ -23,6 +24,6 @@ local normalize(k) =
 
 // Define outputs below
 {
-  [normalize(k)]: params[k]
+  [normalize(k)]: manifests[k]
   for k in keys
 }

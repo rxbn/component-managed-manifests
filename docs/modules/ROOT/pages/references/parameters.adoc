@@ -18,22 +18,31 @@ The namespace in which to deploy this component.
 namespace: example-namespace
 ----
 
-== `managed_manifests.<filename>`
+== `manifests`
+
+[horizontal]
+type:: object
+default:: `{}`
+
+Map of manifest files to render. Each key is rendered as a YAML file with the same name.
+
+== `manifests.<filename>`
 
 [horizontal]
 type:: object
 default:: `{}` (no manifests)
 
-Each key under `managed_manifests` (except `namespace` and metadata keys like `=_metadata`) is rendered as a YAML file with the same name.
+Each key under `managed_manifests.manifests` is rendered as a YAML file with the same name.
 
 == Example
 
 [source,yaml]
 ----
 managed_manifests:
-  01-mynamespace.yaml:
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: example
+  manifests:
+    01-mynamespace.yaml:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: example
 ----
