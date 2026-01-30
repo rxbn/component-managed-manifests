@@ -6,7 +6,15 @@ local params = inv.parameters.managed_manifests;
 
 // Define outputs below
 {
-  [k]: params[k]
+  [local base =
+      if std.endsWith(k, '.yaml') then
+        std.substr(k, 0, std.length(k) - 5)
+      else if std.endsWith(k, '.yml') then
+        std.substr(k, 0, std.length(k) - 4)
+      else
+        k;
+    base
+  ]: params[k]
   for k in (
     if params == null then
       []
