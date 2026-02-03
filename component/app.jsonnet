@@ -3,7 +3,7 @@ local inv = kap.inventory();
 local params = inv.parameters.managed_manifests;
 local argocd = import 'lib/argocd.libjsonnet';
 
-local app = argocd.App('managed-manifests', params.namespace);
+local app = argocd.App('managed-manifests', 'default');
 
 local appPath =
   local project = std.get(std.get(app, 'spec', {}), 'project', 'syn');
